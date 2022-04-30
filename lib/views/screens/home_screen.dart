@@ -114,9 +114,12 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   child: Row(
                                     children: [
-                                      const CircleAvatar(
+                                      CircleAvatar(
                                         backgroundColor: kPrimaryColor,
-                                        child: Icon(Icons.ballot_outlined),
+                                        child: Image.asset(
+                                          'assets/images/engine-oil.png',
+                                          height: 25,
+                                        ),
                                       ),
                                       const SizedBox(
                                         width: 15,
