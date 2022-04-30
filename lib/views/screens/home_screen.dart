@@ -1,8 +1,10 @@
 import 'package:beepz/constants/color_constants.dart';
 import 'package:beepz/constants/style_constants.dart';
+import 'package:beepz/controllers/request_controller.dart';
 import 'package:beepz/views/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/menu_icon.dart';
 
@@ -11,6 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final requestController = Provider.of<RequestController>(context);
     double deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kPrimaryColor,
@@ -129,22 +132,23 @@ class HomeScreen extends StatelessWidget {
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: const [
+                                          children: [
                                             Text(
-                                              'Service My Car',
+                                              requestController.request.length.toString()
+                                            ,
                                               style: kTitleTextStyle,
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
-                                            Text(
+                                            const Text(
                                               'Car details: Service My Car hello my car(G-1288)',
                                               style: kSubtitleTextStyle,
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 5,
                                             ),
-                                            Text(
+                                            const Text(
                                               'Date of services: 03 January, 2022',
                                               style: kSubtitleTextStyle,
                                             ),
