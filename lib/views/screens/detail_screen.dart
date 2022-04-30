@@ -1,3 +1,4 @@
+import 'package:beepz/constants/style_constants.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -29,18 +30,14 @@ class DetailScreen extends StatelessWidget {
                       },
                     ),
                     Column(
-                      children: const [
-                        Icon(
+                      children: [
+                        const Icon(
                           Icons.car_repair,
                           color: Colors.white,
                         ),
                         Text(
                           'Beepz',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 50.0,
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: kLogoTextStyle,
                         ),
                       ],
                     ),

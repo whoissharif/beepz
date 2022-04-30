@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'color_constants.dart';
 
@@ -12,5 +13,11 @@ const TextStyle kSubtitleTextStyle = TextStyle(
   fontSize: 13,
   color: kTextColor,
 );
-// const TextStyle kTitleTextStyle
+TextStyle kLogoTextStyle = GoogleFonts.convergence(
+  textStyle: const TextStyle(
+    color: Colors.white,
+    fontSize: 50.0,
+    fontWeight: FontWeight.w700,
+  ),
+);
 // const TextStyle kTitleTextStyle

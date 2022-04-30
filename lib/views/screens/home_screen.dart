@@ -3,6 +3,7 @@ import 'package:beepz/constants/style_constants.dart';
 import 'package:beepz/views/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,18 +28,14 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
                 Column(
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.car_repair,
                       color: Colors.white,
                     ),
                     Text(
                       'Beepz',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50.0,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: kLogoTextStyle,
                     ),
                   ],
                 ),
