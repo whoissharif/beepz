@@ -1,5 +1,8 @@
 import 'package:beepz/constants/style_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../constants/color_constants.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -31,9 +34,9 @@ class DetailScreen extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        const Icon(
-                          Icons.car_repair,
-                          color: Colors.white,
+                        Image.asset(
+                          'assets/images/car.png',
+                          height: 40,
                         ),
                         Text(
                           'Beepz',
@@ -67,10 +70,7 @@ class DetailScreen extends StatelessWidget {
                   right: 30,
                   child: Container(
                     alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 15,
-                      horizontal: 10,
-                    ),
+                    clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
                       // color: Colors.amber,
                       color: Colors.white,
@@ -83,27 +83,45 @@ class DetailScreen extends StatelessWidget {
                             spreadRadius: 3)
                       ],
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Stack(
                       children: [
-                        const CircleAvatar(
-                          child: Icon(Icons.document_scanner),
+                        Positioned(
+                          right: -10,
+                          bottom: -10,
+                          child: SvgPicture.asset(
+                            'assets/svg/wave.svg',
+                            semanticsLabel: 'wave shape',
+                            color: kShadowColor,
+                            height: 100,
+                          ),
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text('Order Number'),
-                            Text(
-                              '#375465',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 18.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const CircleAvatar(
+                                child: Icon(Icons.document_scanner),
+                                backgroundColor: kSecondaryColor,
                               ),
-                            ),
-                          ],
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text('Order Number'),
+                                  Text(
+                                    '#375465',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

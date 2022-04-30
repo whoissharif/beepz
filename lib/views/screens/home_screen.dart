@@ -3,7 +3,8 @@ import 'package:beepz/constants/style_constants.dart';
 import 'package:beepz/views/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import '../widgets/menu_icon.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,15 +24,12 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Icon(
-                  Icons.menu,
-                  color: Colors.white,
-                ),
+                const MenuIcon(),
                 Column(
                   children: [
-                    const Icon(
-                      Icons.car_repair,
-                      color: Colors.white,
+                    Image.asset(
+                      'assets/images/car.png',
+                      height: 40,
                     ),
                     Text(
                       'Beepz',
