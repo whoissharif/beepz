@@ -1,4 +1,6 @@
+import 'package:beepz/constants/string_constants.dart';
 import 'package:beepz/constants/style_constants.dart';
+import 'package:beepz/constants/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -8,10 +10,31 @@ import '../../constants/color_constants.dart';
 import '../../controllers/request_controller.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key, required this.index}) : super(key: key);
+  DetailScreen({Key? key, required this.index}) : super(key: key);
 
   final int index;
-
+  final List<String> timelineTitle = [
+    'Booking Confirmed',
+    'Driver on the way to pickup',
+    'QR Code Scanned',
+    'Car Picked Up',
+    'Reached Garage',
+    'Service Started',
+    'Service Ended',
+    'Driver on the way to Drop off',
+    'Booking Completed',
+  ];
+  final List<IconData> timelineIcon = [
+    Icons.thumb_up,
+    Icons.person,
+    Icons.qr_code,
+    Icons.car_rental,
+    Icons.home,
+    Icons.start,
+    Icons.stop,
+    Icons.pin_drop,
+    Icons.done,
+  ];
   @override
   Widget build(BuildContext context) {
     final requestController = Provider.of<RequestController>(context);
@@ -22,7 +45,7 @@ class DetailScreen extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: [
-             Container (
+              Container(
                 padding: const EdgeInsets.only(
                     top: 35.0, left: 5.0, right: 30.0, bottom: 50.0),
                 child: Row(
@@ -41,11 +64,11 @@ class DetailScreen extends StatelessWidget {
                     Column(
                       children: [
                         Image.asset(
-                          'assets/images/car.png',
+                          Urls.logo,
                           height: 40,
                         ),
                         Text(
-                          'Beepz',
+                          StringConstants.appName,
                           style: kLogoTextStyle,
                         ),
                       ],
@@ -71,7 +94,7 @@ class DetailScreen extends StatelessWidget {
                     ),
                   ),
                   child: ListView.builder(
-                      itemCount: 8,
+                      itemCount: timelineTitle.length,
                       itemBuilder: (context, index) {
                         return TimelineTile(
                           afterLineStyle: LineStyle(
@@ -85,7 +108,7 @@ class DetailScreen extends StatelessWidget {
                           indicatorStyle: IndicatorStyle(
                             color: (index == 0 || index == 1)
                                 ? kGreenColor
-                                : Colors.grey,
+                                : const Color.fromARGB(255, 194, 193, 193),
                             iconStyle: (index == 0 || index == 1)
                                 ? IconStyle(
                                     iconData: Icons.done,
@@ -97,6 +120,7 @@ class DetailScreen extends StatelessWidget {
                                   ),
                           ),
                           isFirst: index == 0 ? true : false,
+                          isLast: index == 8 ? true : false,
                           endChild: Row(children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -104,7 +128,7 @@ class DetailScreen extends StatelessWidget {
                                 horizontal: 12,
                               ),
                               child: Icon(
-                                Icons.location_on,
+                                timelineIcon[index],
                                 color: (index == 0 || index == 1)
                                     ? kPrimaryColor
                                     : Colors.grey,
@@ -117,7 +141,7 @@ class DetailScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Title ${index + 1}',
+                                    timelineTitle[index],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: (index == 0 || index == 1)
@@ -125,8 +149,8 @@ class DetailScreen extends StatelessWidget {
                                           : Colors.black,
                                     ),
                                   ),
-                                  Text(
-                                    'Subtitle ${index + 1}',
+                                  const Text(
+                                    StringConstants.timelineSubtitle,
                                     style: kSubtitleTextStyle,
                                   )
                                 ],
@@ -160,7 +184,7 @@ class DetailScreen extends StatelessWidget {
                           right: -10,
                           bottom: -10,
                           child: SvgPicture.asset(
-                            'assets/svg/wave.svg',
+                            Urls.waveSvg,
                             semanticsLabel: 'wave shape',
                             color: kShadowColor,
                             height: 100,
@@ -181,15 +205,12 @@ class DetailScreen extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text('Order Number'),
+                                  const Text(StringConstants.orderNumber),
                                   Text(
                                     requestController
                                         .request[index].readableOrderNo
                                         .toString(),
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
+                                    style: kTokenTextStyle,
                                   ),
                                 ],
                               ),

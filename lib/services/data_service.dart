@@ -11,7 +11,7 @@ class DataService {
     List<RequestModel> list = [];
     try {
       var response = await http.get(
-        Uri.parse(Urls.baseUrl),
+        Uri.parse(Urls.baseUrl + Urls.customerRequestUrl),
       );
 
       if (response.statusCode == 200) {

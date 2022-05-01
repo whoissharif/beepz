@@ -1,8 +1,9 @@
+import 'package:beepz/constants/string_constants.dart';
+import 'package:beepz/constants/urls.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/style_constants.dart';
 import 'menu_icon.dart';
-
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({
@@ -12,7 +13,7 @@ class MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -20,12 +21,15 @@ class MyAppBar extends StatelessWidget {
           const MenuIcon(),
           Column(
             children: [
-              Image.asset(
-                'assets/images/car.png',
-                height: 40,
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Image.asset(
+                  Urls.logo,
+                  height: 40,
+                ),
               ),
               Text(
-                'Beepz',
+                StringConstants.appName,
                 style: kLogoTextStyle,
               ),
             ],

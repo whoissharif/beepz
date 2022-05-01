@@ -1,3 +1,5 @@
+import 'package:beepz/constants/string_constants.dart';
+import 'package:beepz/constants/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
@@ -43,7 +45,7 @@ class ReqItem extends StatelessWidget {
             right: -10,
             bottom: -10,
             child: SvgPicture.asset(
-              'assets/svg/wave.svg',
+              Urls.waveSvg,
               semanticsLabel: 'wave shape',
               color: kShadowColor,
               height: 110,
@@ -59,8 +61,8 @@ class ReqItem extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: kPrimaryColor,
                   child: Image.asset(
-                    'assets/images/engine-oil.png',
-                    height: 25,
+                    Urls.engineOil,
+                    height: 22,
                   ),
                 ),
                 const SizedBox(
@@ -72,7 +74,7 @@ class ReqItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Service My Car',
+                        StringConstants.serviceMyCar,
                         style: kTitleTextStyle,
                       ),
                       const SizedBox(
@@ -80,21 +82,24 @@ class ReqItem extends StatelessWidget {
                       ),
                       index == 0
                           ? Text(
-                              'Car details: ${requestController.request[index].car!.vehicleModel!.modelName} ',
+                              StringConstants.carDetails +
+                                  '${requestController.request[index].car!.vehicleModel!.modelName} ',
                               style: kSubtitleTextStyle,
                             )
                           : Text(
-                              'Car details: ${requestController.request[index].car!.vehicleNickName} ${requestController.request[index].car!.vehicleModel!.modelName} (${requestController.request[index].car!.plateNumber})',
+                              StringConstants.carDetails +
+                                  '${requestController.request[index].car!.vehicleNickName} ${requestController.request[index].car!.vehicleModel!.modelName} (${requestController.request[index].car!.plateNumber})',
                               style: kSubtitleTextStyle,
                             ),
                       const SizedBox(
                         height: 5,
                       ),
                       Text(
-                        'Date of services: ${DateFormat.yMMMd().format(
-                          DateFormat("yyyy-MM-dd").parse(
-                              '${requestController.request[index].customer!.createdAt}'),
-                        )}',
+                        StringConstants.dateOfServices +
+                            DateFormat.yMMMd().format(
+                              DateFormat("yyyy-MM-dd").parse(
+                                  '${requestController.request[index].customer!.createdAt}'),
+                            ),
                         style: kSubtitleTextStyle,
                       ),
                     ],
@@ -102,13 +107,9 @@ class ReqItem extends StatelessWidget {
                 ),
                 const Spacer(),
                 const Text(
-                  'Driver on the\nway to pick up',
+                  StringConstants.driverStatus,
                   textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: kGreenColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 13,
-                  ),
+                  style: kDriverStatusTextStyle,
                 ),
               ],
             ),

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:beepz/models/request_model.dart';
 import 'package:flutter/foundation.dart';
 
@@ -12,7 +10,6 @@ class RequestController extends ChangeNotifier {
   List<RequestModel>? requestModel;
   List<RequestModel> get request => requestModel!;
 
-
   RequestController() {
     _dataLoaded = false;
     _service = DataService();
@@ -21,7 +18,6 @@ class RequestController extends ChangeNotifier {
 
   void getData() async {
     requestModel = await _service.getData();
-    log('controller : $requestModel');
     _dataLoaded = true;
     notifyListeners();
   }

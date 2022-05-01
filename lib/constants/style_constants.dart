@@ -10,7 +10,7 @@ const TextStyle kTitleTextStyle = TextStyle(
 );
 
 const TextStyle kSubtitleTextStyle = TextStyle(
-  fontSize: 13,
+  fontSize: 11,
   color: kTextColor,
 );
 TextStyle kLogoTextStyle = GoogleFonts.convergence(
@@ -20,4 +20,13 @@ TextStyle kLogoTextStyle = GoogleFonts.convergence(
     fontWeight: FontWeight.w700,
   ),
 );
-// const TextStyle kTitleTextStyle
+const TextStyle kDriverStatusTextStyle = TextStyle(
+  color: kGreenColor,
+  fontWeight: FontWeight.bold,
+  fontSize: 12,
+);
+
+const TextStyle kTokenTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 16,
+);
