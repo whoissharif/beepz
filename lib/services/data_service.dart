@@ -15,15 +15,11 @@ class DataService {
       );
 
       if (response.statusCode == 200) {
-        log('message');
         map = json.decode(response.body);
-        
         temp = map["data"]["data"];
-        log('$temp');
         for (var e in temp) {
           list.add(RequestModel.fromJson(e));
         }
-        log(list.toString());
       }
     } catch (e) {
       log(e.toString());

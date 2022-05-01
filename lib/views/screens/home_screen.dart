@@ -4,6 +4,7 @@ import 'package:beepz/controllers/request_controller.dart';
 import 'package:beepz/views/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/menu_icon.dart';
@@ -161,7 +162,12 @@ class HomeScreen extends StatelessWidget {
                                                     height: 5,
                                                   ),
                                                   Text(
-                                                    'Date of services: ${requestController.request[index].bookingDate}',
+                                                    'Date of services: ${DateFormat.yMMMd().format(
+                                                      DateFormat(
+                                                              "yyyy-MM-dd")
+                                                          .parse(
+                                                              '${requestController.request[index].customer!.createdAt}'),
+                                                    )}',
                                                     style: kSubtitleTextStyle,
                                                   ),
                                                 ],
