@@ -21,8 +21,7 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.only(
-                top: 30.0, left: 30.0, right: 30.0, bottom: 30.0),
+            padding: const EdgeInsets.all(30.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -48,7 +47,7 @@ class HomeScreen extends StatelessWidget {
             child: Stack(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   decoration: const BoxDecoration(
                     color: kShadowColor,
                     borderRadius: BorderRadius.only(
@@ -61,7 +60,10 @@ class HomeScreen extends StatelessWidget {
                   top: 40,
                   child: Container(
                     padding: const EdgeInsets.only(
-                        left: 20.0, right: 20.0, top: 20.0),
+                      left: 20.0,
+                      right: 20.0,
+                      top: 15.0,
+                    ),
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -69,111 +71,121 @@ class HomeScreen extends StatelessWidget {
                         topRight: Radius.circular(20.0),
                       ),
                     ),
-                    child: ListView.builder(
-                      itemCount: 20,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (_) {
-                              return const DetailScreen();
-                            }));
-                          },
-                          child: Container(
-                            clipBehavior: Clip.hardEdge,
-                            margin: const EdgeInsets.symmetric(
-                              vertical: 10,
-                              horizontal: 20,
-                            ),
-                            decoration: BoxDecoration(
-                              // color: Colors.amber,
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.grey.withOpacity(.5),
-                                    offset: const Offset(0, 0),
-                                    blurRadius: 8.0,
-                                    spreadRadius: 1)
-                              ],
-                            ),
-                            child: Stack(
-                              clipBehavior: Clip.hardEdge,
-                              children: [
-                                Positioned(
-                                  right: -10,
-                                  bottom: -10,
-                                  child: SvgPicture.asset(
-                                    'assets/svg/wave.svg',
-                                    semanticsLabel: 'wave shape',
-                                    color: kShadowColor,
-                                    height: 110,
+                    child: requestController.dataLoaded == false
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : ListView.builder(
+                            padding: EdgeInsets.zero,
+                            itemCount: requestController.request.length,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.of(context)
+                                      .push(MaterialPageRoute(builder: (_) {
+                                    return const DetailScreen();
+                                  }));
+                                },
+                                child: Container(
+                                  clipBehavior: Clip.hardEdge,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: 10,
+                                    horizontal: 8,
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 12.0,
-                                    horizontal: 18.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey.withOpacity(.5),
+                                          offset: const Offset(0, 0),
+                                          blurRadius: 8.0,
+                                          spreadRadius: 1)
+                                    ],
                                   ),
-                                  child: Row(
+                                  child: Stack(
+                                    clipBehavior: Clip.hardEdge,
                                     children: [
-                                      CircleAvatar(
-                                        backgroundColor: kPrimaryColor,
-                                        child: Image.asset(
-                                          'assets/images/engine-oil.png',
-                                          height: 25,
+                                      Positioned(
+                                        right: -10,
+                                        bottom: -10,
+                                        child: SvgPicture.asset(
+                                          'assets/svg/wave.svg',
+                                          semanticsLabel: 'wave shape',
+                                          color: kShadowColor,
+                                          height: 110,
                                         ),
                                       ),
-                                      const SizedBox(
-                                        width: 15,
-                                      ),
-                                      SizedBox(
-                                        width: deviceWidth * .40,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 12.0,
+                                          horizontal: 10.0,
+                                        ),
+                                        child: Row(
                                           children: [
-                                            Text(
-                                              requestController.request.length.toString()
-                                            ,
-                                              style: kTitleTextStyle,
+                                            CircleAvatar(
+                                              backgroundColor: kPrimaryColor,
+                                              child: Image.asset(
+                                                'assets/images/engine-oil.png',
+                                                height: 25,
+                                              ),
                                             ),
                                             const SizedBox(
-                                              height: 8,
+                                              width: 10,
                                             ),
+                                            SizedBox(
+                                              width: deviceWidth * .40,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  const Text(
+                                                    'Service My Car',
+                                                    style: kTitleTextStyle,
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  index == 0
+                                                      ? Text(
+                                                          'Car details: ${requestController.request[index].car!.vehicleModel!.modelName} ',
+                                                          style:
+                                                              kSubtitleTextStyle,
+                                                        )
+                                                      : Text(
+                                                          'Car details: ${requestController.request[index].car!.vehicleNickName} ${requestController.request[index].car!.vehicleModel!.modelName} (${requestController.request[index].car!.plateNumber})',
+                                                          style:
+                                                              kSubtitleTextStyle,
+                                                        ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    'Date of services: ${requestController.request[index].bookingDate}',
+                                                    style: kSubtitleTextStyle,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            const Spacer(),
                                             const Text(
-                                              'Car details: Service My Car hello my car(G-1288)',
-                                              style: kSubtitleTextStyle,
-                                            ),
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            const Text(
-                                              'Date of services: 03 January, 2022',
-                                              style: kSubtitleTextStyle,
+                                              'Driver on the\nway to pick up',
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                color: kGreenColor,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13,
+                                              ),
                                             ),
                                           ],
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      const Text(
-                                        'Driver on the\nway to pick up',
-                                        textAlign: TextAlign.right,
-                                        style: TextStyle(
-                                          color: kGreenColor,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
                   ),
                 ),
               ],
