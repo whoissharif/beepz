@@ -1,15 +1,20 @@
 import 'package:beepz/constants/style_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 import '../../constants/color_constants.dart';
+import '../../controllers/request_controller.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  const DetailScreen({Key? key, required this.index}) : super(key: key);
+
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final requestController = Provider.of<RequestController>(context);
     return Scaffold(
       backgroundColor: kPrimaryColor,
       body: Column(
@@ -17,9 +22,9 @@ class DetailScreen extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: [
-              Container(
+             Container (
                 padding: const EdgeInsets.only(
-                    top: 30.0, left: 30.0, right: 30.0, bottom: 50.0),
+                    top: 35.0, left: 5.0, right: 30.0, bottom: 50.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,7 +137,7 @@ class DetailScreen extends StatelessWidget {
                       }),
                 ),
                 Positioned(
-                  top: -35,
+                  top: -40,
                   left: 30,
                   right: 30,
                   child: Container(
@@ -166,20 +171,22 @@ class DetailScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const CircleAvatar(
-                                child: Icon(Icons.document_scanner),
-                                backgroundColor: kSecondaryColor,
+                              Image.network(
+                                '${requestController.request[index].category!.icon}',
+                                width: 50,
                               ),
                               const SizedBox(
                                 width: 10,
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('Order Number'),
+                                children: [
+                                  const Text('Order Number'),
                                   Text(
-                                    '#375465',
-                                    style: TextStyle(
+                                    requestController
+                                        .request[index].readableOrderNo
+                                        .toString(),
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
                                     ),
