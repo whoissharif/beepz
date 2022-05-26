@@ -60,9 +60,9 @@ class ReqItem extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundColor: kPrimaryColor,
-                  child: Image.asset(
-                    Urls.engineOil,
-                    height: 22,
+                  child: Image.network(
+                    '${requestController.request[index].category!.icon}',
+                    width: 50,
                   ),
                 ),
                 const SizedBox(

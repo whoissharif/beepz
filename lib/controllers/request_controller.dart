@@ -7,7 +7,7 @@ class RequestController extends ChangeNotifier {
   bool? _dataLoaded;
   bool get dataLoaded => _dataLoaded!;
   late DataService _service;
-  List<RequestModel>? requestModel;
+  List<RequestModel>? requestModel = [];
   List<RequestModel> get request => requestModel!;
 
   RequestController() {
