@@ -1,9 +1,9 @@
-
-# Beepz
-<img src="assets/ss/app_logo.png" height=70 align="left"> 
-<br />
-<br />
-<br /><br />
+<img src="assets/images/beepz.png" align="left"> <br>
+<br/><br/>
+<br><br>
+# .
+### Screenshots:
+<br>
 <table>
   <tr>
     <td><img src="/assets/ss/1.jpg" width=270 ></td>
